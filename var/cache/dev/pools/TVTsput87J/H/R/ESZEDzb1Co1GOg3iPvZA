@@ -1,0 +1,41 @@
+<?php //%255BApp%255CEntity%255COccurrence%2524publishedLocation%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Serializer\\Annotation\\Groups'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Annotation\\Groups')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+    ],
+    null,
+    [
+        'Symfony\\Component\\Serializer\\Annotation\\Groups' => [
+            'groups' => [
+                [
+                    'read',
+                    'write',
+                ],
+            ],
+        ],
+        'stdClass' => [
+            'name' => [
+                1 => 'published_location',
+            ],
+            'type' => [
+                1 => 'publishedlocationenum',
+            ],
+            'nullable' => [
+                1 => true,
+            ],
+            'options' => [
+                1 => [
+                    'comment' => 'Précision géographique à laquelle est publiée l\'obs, permet de gérer le floutage',
+                    'default' => 'précise',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+); }];

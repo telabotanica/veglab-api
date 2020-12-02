@@ -1,0 +1,156 @@
+<?php //%255BApp%255CEntity%255CExtendedFieldOccurrence%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\ExtendedFieldOccurrence',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\ExtendedFieldOccurrence',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'value' => [
+                        'fieldName' => 'value',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Valeur renseignée par l\'utilisateur',
+                        ],
+                        'columnName' => 'value',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'value' => 'value',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'value' => 'value',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'extended_field_occurrence',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'occurrence' => [
+                        'fieldName' => 'occurrence',
+                        'joinColumns' => [
+                            [
+                                'name' => 'occurrence_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'extendedFieldOccurrences',
+                        'targetEntity' => 'App\\Entity\\Occurrence',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\ExtendedFieldOccurrence',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'occurrence_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'occurrence_id' => 'occurrence_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'occurrence_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'extendedField' => [
+                        'fieldName' => 'extendedField',
+                        'joinColumns' => [
+                            [
+                                'name' => 'extended_field_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'extendedFieldOccurrences',
+                        'targetEntity' => 'App\\Entity\\ExtendedField',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\ExtendedFieldOccurrence',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'extended_field_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'extended_field_id' => 'extended_field_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'extended_field_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

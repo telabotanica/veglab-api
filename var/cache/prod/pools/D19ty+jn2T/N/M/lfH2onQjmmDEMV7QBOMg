@@ -1,0 +1,40 @@
+<?php //%255BApp%255CEntity%255CExtendedFieldTranslation%2524defaultValue%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Serializer\\Annotation\\Groups'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Annotation\\Groups')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+    ],
+    null,
+    [
+        'Symfony\\Component\\Serializer\\Annotation\\Groups' => [
+            'groups' => [
+                [
+                    'read',
+                    'write',
+                ],
+            ],
+        ],
+        'stdClass' => [
+            'name' => [
+                1 => 'default_value',
+            ],
+            'length' => [
+                1 => 255,
+            ],
+            'nullable' => [
+                1 => true,
+            ],
+            'options' => [
+                1 => [
+                    'comment' => 'Valeur par défaut',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+); }];

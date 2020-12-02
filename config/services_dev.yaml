@@ -1,0 +1,9 @@
+# App config parameters for dev env.
+parameters:
+    auth:
+        serverHost:     'www.tela-botanica.org'
+        serverProtocol: 'https'
+        serverPort:     '80'
+        serverBasePath: 'service:annuaire:auth'
+
+

@@ -1,0 +1,164 @@
+<?php //%255BApp%255CEntity%255COccurrence%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Index'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Index')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [
+                    'get',
+                    'post' => [
+                        'method' => 'POST',
+                    ],
+                    'bulk' => [
+                        'method' => 'PATCH',
+                        'controller' => 'App\\Controller\\OccurrenceBulkAction',
+                        'swagger_context' => [
+                            'parameters' => [],
+                            'responses' => [
+                                207 => [
+                                    'description' => 'The bulk operation was performed succesfully.',
+                                ],
+                                500 => [
+                                    'description' => 'An error occured during bulk operation.',
+                                ],
+                            ],
+                            'summary' => 'Bulk treatment for DELETE and UPDATE operations for Occurrence resources.',
+                            'consumes' => 'json-patch+json',
+                            'produces' => 'application/json',
+                        ],
+                    ],
+                    'import' => [
+                        'method' => 'POST',
+                        'path' => '/occurrences/import',
+                        'controller' => 'App\\Controller\\ImportOccurrenceAction',
+                        'swagger_context' => [
+                            'parameters' => [],
+                            'responses' => [
+                                207 => [
+                                    'description' => 'The import was performed succesfully.',
+                                ],
+                                500 => [
+                                    'description' => 'An error occured during import.',
+                                ],
+                            ],
+                            'summary' => 'Import Occurrence resources by uploading a spreadsheet file (excel or CSV).',
+                            'produces' => 'application/json',
+                        ],
+                    ],
+                    'export' => [
+                        'method' => 'POST',
+                        'path' => '/occurrences/export',
+                        'controller' => 'App\\Controller\\ExportOccurrenceAction',
+                        'swagger_context' => [
+                            'parameters' => [],
+                            'responses' => [
+                                207 => [
+                                    'description' => 'The export was performed succesfully.',
+                                ],
+                                500 => [
+                                    'description' => 'An error occured during export.',
+                                ],
+                            ],
+                            'summary' => 'Export Occurrence resources by generating a spreadsheet file (excel or CSV).',
+                            'produces' => 'application/json',
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'method' => 'GET',
+                        'access_control' => 'is_granted(\'view\', object)',
+                    ],
+                    'patch' => [
+                        'method' => 'PATCH',
+                        'access_control' => 'is_granted(\'edit\', object)',
+                    ],
+                    'put' => [
+                        'method' => 'PUT',
+                        'access_control' => 'is_granted(\'edit\', object)',
+                    ],
+                    'delete' => [
+                        'method' => 'DELETE',
+                        'access_control' => 'is_granted(\'delete\', object)',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'normalization_context' => [
+                        'groups' => [
+                            'read',
+                        ],
+                    ],
+                    'formats' => [
+                        'jsonld',
+                        'json',
+                        'geojson' => [
+                            'application/vnd.geo+json',
+                        ],
+                        'jsonpatch' => [
+                            'application/json-patch+json',
+                        ],
+                        'pdf' => [
+                            'application/pdf',
+                        ],
+                        'csv' => [
+                            'text/csv',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'write',
+                        ],
+                    ],
+                    'filters' => [
+                        'App\\Filter\\Occurrence\\IsPublicFilter',
+                        'App\\Filter\\Occurrence\\CertaintyFilter',
+                        'App\\Filter\\Occurrence\\DateObservedYearFilter',
+                        'App\\Filter\\Occurrence\\DateObservedMonthFilter',
+                        'App\\Filter\\Occurrence\\DateObservedDayFilter',
+                        'App\\Filter\\Occurrence\\UserSciNameFilter',
+                        'App\\Filter\\Occurrence\\CountryFilter',
+                        'App\\Filter\\Occurrence\\IdentiplanteScoreFilter',
+                        'App\\Filter\\Occurrence\\IsIdentiplanteValidatedFilter',
+                        'App\\Filter\\Occurrence\\CountyFilter',
+                        'App\\Filter\\Occurrence\\FamilyFilter',
+                        'App\\Filter\\Occurrence\\ProjectIdFilter',
+                    ],
+                ],
+            ],
+            'repositoryClass' => [
+                1 => 'App\\Repository\\OccurrenceRepository',
+            ],
+            'name' => [
+                2 => 'occurrence',
+                'user_id_idx',
+            ],
+            'indexes' => [
+                2 => [
+                    $o[3],
+                ],
+            ],
+            'columns' => [
+                3 => [
+                    'user_id',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+    ],
+    []
+); }];

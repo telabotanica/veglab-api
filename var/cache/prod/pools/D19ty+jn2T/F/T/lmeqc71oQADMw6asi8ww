@@ -1,0 +1,66 @@
+<?php //%255BApp%255CEntity%255CUserProfileCel%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiFilter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiFilter')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                1 => 'user_profile_cel',
+            ],
+            'options' => [
+                1 => [
+                    'comment' => 'Gestion des préférences utilisateurs',
+                ],
+            ],
+            'collectionOperations' => [
+                2 => [
+                    'post' => [
+                        'method' => 'POST',
+                        'controller' => 'App\\Controller\\CreateProfileAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                    ],
+                    'get' => [
+                        'method' => 'GET',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                2 => [
+                    'normalization_context' => [
+                        'groups' => [
+                            'read',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'write',
+                        ],
+                    ],
+                ],
+            ],
+            'filterClass' => [
+                3 => 'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\SearchFilter',
+            ],
+            'properties' => [
+                3 => [
+                    'userId' => 'exact',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+    ],
+    []
+); }];

@@ -1,0 +1,351 @@
+<?php //%255BApp%255CEntity%255COccurrenceValidation%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\OccurrenceValidation',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\OccurrenceValidation',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'validatedBy' => [
+                        'fieldName' => 'validatedBy',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'User (Id) ayant validé',
+                        ],
+                        'columnName' => 'validated_by',
+                    ],
+                    'validatedAt' => [
+                        'fieldName' => 'validatedAt',
+                        'type' => 'datetime',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Date de validation',
+                        ],
+                        'columnName' => 'validated_at',
+                    ],
+                    'updatedBy' => [
+                        'fieldName' => 'updatedBy',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Utilisateur (Id) ayant mis à jour la validation',
+                        ],
+                        'columnName' => 'updated_by',
+                    ],
+                    'updatedAt' => [
+                        'fieldName' => 'updatedAt',
+                        'type' => 'datetime',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Date de mise à jour de la validation',
+                        ],
+                        'columnName' => 'updated_at',
+                    ],
+                    'repository' => [
+                        'fieldName' => 'repository',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Nom du référentiel',
+                        ],
+                        'columnName' => 'repository',
+                    ],
+                    'repositoryIdNomen' => [
+                        'fieldName' => 'repositoryIdNomen',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Numéro nomenclatural dans le référentiel',
+                        ],
+                        'columnName' => 'repository_id_nomen',
+                    ],
+                    'repositoryIdTaxo' => [
+                        'fieldName' => 'repositoryIdTaxo',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Numéro taxinomique dans le référentiel',
+                        ],
+                        'columnName' => 'repository_id_taxo',
+                    ],
+                    'inputName' => [
+                        'fieldName' => 'inputName',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Nom entré par l\'utilisateur',
+                        ],
+                        'columnName' => 'input_name',
+                    ],
+                    'validatedName' => [
+                        'fieldName' => 'validatedName',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Nom valide lors de la saisie',
+                        ],
+                        'columnName' => 'validated_name',
+                    ],
+                    'validName' => [
+                        'fieldName' => 'validName',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Nom valide',
+                        ],
+                        'columnName' => 'valid_name',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'validated_by' => 'validatedBy',
+                    'validated_at' => 'validatedAt',
+                    'updated_by' => 'updatedBy',
+                    'updated_at' => 'updatedAt',
+                    'repository' => 'repository',
+                    'repository_id_nomen' => 'repositoryIdNomen',
+                    'repository_id_taxo' => 'repositoryIdTaxo',
+                    'input_name' => 'inputName',
+                    'validated_name' => 'validatedName',
+                    'valid_name' => 'validName',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'validatedBy' => 'validated_by',
+                    'validatedAt' => 'validated_at',
+                    'updatedBy' => 'updated_by',
+                    'updatedAt' => 'updated_at',
+                    'repository' => 'repository',
+                    'repositoryIdNomen' => 'repository_id_nomen',
+                    'repositoryIdTaxo' => 'repository_id_taxo',
+                    'inputName' => 'input_name',
+                    'validatedName' => 'validated_name',
+                    'validName' => 'valid_name',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'occurrence_validation',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'occurrence' => [
+                        'fieldName' => 'occurrence',
+                        'joinColumns' => [
+                            [
+                                'name' => 'occurrence_id',
+                                'unique' => false,
+                                'nullable' => true,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'validations',
+                        'targetEntity' => 'App\\Entity\\Occurrence',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\OccurrenceValidation',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'occurrence_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'occurrence_id' => 'occurrence_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'occurrence_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'syntheticColumn' => [
+                        'fieldName' => 'syntheticColumn',
+                        'joinColumns' => [
+                            [
+                                'name' => 'synthetic_column_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'validations',
+                        'targetEntity' => 'App\\Entity\\SyntheticColumn',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\OccurrenceValidation',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'synthetic_column_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'synthetic_column_id' => 'synthetic_column_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'synthetic_column_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    '_table' => [
+                        'fieldName' => '_table',
+                        'joinColumns' => [
+                            [
+                                'name' => '_table_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'validations',
+                        'targetEntity' => 'App\\Entity\\Table',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\OccurrenceValidation',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            '_table_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            '_table_id' => '_table_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => '_table_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'sye' => [
+                        'fieldName' => 'sye',
+                        'joinColumns' => [
+                            [
+                                'name' => 'sye_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'validations',
+                        'targetEntity' => 'App\\Entity\\Sye',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\OccurrenceValidation',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'sye_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'sye_id' => 'sye_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'sye_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

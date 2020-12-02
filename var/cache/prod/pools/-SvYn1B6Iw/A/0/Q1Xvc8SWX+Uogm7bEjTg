@@ -1,0 +1,205 @@
+<?php //%255BApp%255CEntity%255CTelaBotanicaProject%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\TelaBotanicaProject',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\TelaBotanicaProject',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'label' => [
+                        'fieldName' => 'label',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Intitulé du projet',
+                        ],
+                        'columnName' => 'label',
+                    ],
+                    'isPrivate' => [
+                        'fieldName' => 'isPrivate',
+                        'type' => 'boolean',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Indique si tout le monde peut contribuer au projet (\'false\') ou seulement les admin (\'true\')',
+                        ],
+                        'columnName' => 'is_private',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'label' => 'label',
+                    'is_private' => 'isPrivate',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'label' => 'label',
+                    'isPrivate' => 'is_private',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'tb_project',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'parent' => [
+                        'fieldName' => 'parent',
+                        'targetEntity' => 'App\\Entity\\TelaBotanicaProject',
+                        'joinColumns' => [
+                            [
+                                'name' => 'parent_id',
+                                'unique' => true,
+                                'nullable' => true,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'mappedBy' => null,
+                        'inversedBy' => null,
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 1,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\TelaBotanicaProject',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'parent_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'parent_id' => 'parent_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'parent_id',
+                        ],
+                    ],
+                    'projectSettings' => [
+                        'fieldName' => 'projectSettings',
+                        'mappedBy' => 'project',
+                        'targetEntity' => 'App\\Entity\\ProjectSettings',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\TelaBotanicaProject',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                    'occurrences' => [
+                        'fieldName' => 'occurrences',
+                        'mappedBy' => 'project',
+                        'targetEntity' => 'App\\Entity\\Occurrence',
+                        'cascade' => [
+                            'persist',
+                        ],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\TelaBotanicaProject',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                    'extendedFields' => [
+                        'fieldName' => 'extendedFields',
+                        'mappedBy' => 'project',
+                        'targetEntity' => 'App\\Entity\\ExtendedField',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\TelaBotanicaProject',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                    'administratorProfiles' => [
+                        'fieldName' => 'administratorProfiles',
+                        'mappedBy' => 'project',
+                        'targetEntity' => 'App\\Entity\\UserProfileCel',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\TelaBotanicaProject',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

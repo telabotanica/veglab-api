@@ -1,0 +1,219 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'fr'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # ########################################################################
+    # ENTITY (DE)SERIALIZATION
+    # ########################################################################
+
+    # Encoder for GeoJSON format:
+    'App\Serializer\GeoJsonOccurrenceNormalizer':
+        arguments: [ '@api_platform.serializer.normalizer.item' ]
+        tags: [ 'serializer.normalizer' ]
+
+    # Serializer for GeoJSON format:
+    app.serializer.geo_json_occurrence_encoder:
+        class: App\Serializer\GeoJsonOccurrenceEncoder
+        tags: [ 'serializer.encoder' ]
+
+    # Encoder for JSON-PATCH format:
+    'App\Serializer\JsonPatchOccurrenceNormalizer':
+        arguments: [ '@api_platform.serializer.normalizer.item' ]
+        tags: [ 'serializer.normalizer' ]
+
+    # Serializer for JSON-PATCH format:
+    app.serializer.json_patch_encoder:
+        class: App\Serializer\JsonPatchOccurrenceEncoder
+        tags: [ 'serializer.encoder' ]
+
+    # Encoder for PDF format:
+    'App\Serializer\PdfOccurrenceNormalizer':
+        arguments: [ '@api_platform.serializer.normalizer.item' ]
+        tags: [ 'serializer.normalizer' ]
+
+    # Serializer for PDF format:
+    app.serializer.pdf_occurrence_encoder:
+        class: App\Serializer\PdfOccurrenceEncoder
+        tags: [ 'serializer.encoder' ]
+
+    # ########################################################################
+    # ELASTICA ENTITY TO DOCUMENT TRANSFORMERS
+    # ########################################################################
+    # Services for transforming entities to elasticsearch documents 
+    # ########################################################################
+ 
+    # Occurrence resource type.
+    app.search.occurrence_to_elastica_transformer :
+        class: App\Elastica\Transformer\OccurrenceToElasticaTransformer
+
+    # Photo resource type.
+    app.search.photo_to_elastica_transformer :
+        class: App\Elastica\Transformer\PhotoToElasticaTransformer
+    
+    # Table resource type.
+    app.search.table_to_elastica_transformer :
+        class: App\Elastica\Transformer\TableToElasticaTransformer
+
+    # ########################################################################
+    # SECURITY VOTERS (ACL)
+    # ########################################################################
+
+    # Security: voter (ACL) for occurrence entities/resources 
+    security.acccess.occurrence_voter :
+        class:  App\Security\Authorization\OccurrenceVoter
+        public: false
+        tags:
+            - { name: security.voter }
+
+    # Security: voter (ACL) for photo entities/resources 
+    security.acccess.photo_voter :
+        class:  App\Security\Authorization\PhotoVoter
+        public: false
+        tags:
+            - { name: security.voter }
+
+    # Security: voter (ACL) for ExtendedFieldOccurrence entities/resources 
+    security.acccess.extended_field_occurrence_voter :
+        class:  App\Security\Authorization\ExtendedFieldOccurrenceVoter
+        public: false
+        tags:
+            - { name: security.voter }
+
+    # Security: voter (ACL) for OccurrenceUserOccurrenceTagRelation entities/resources 
+    security.acccess.occurrence_user_occurrence_tag_relation_voter :
+        class:  App\Security\Authorization\OccurrenceUserOccurrenceTagRelationVoter
+        public: false
+        tags:
+            - { name: security.voter }
+
+    # Security: voter (ACL) for PhotoPhotoTagRelation entities/resources 
+    security.acccess.photo_photo_tag_relation_voter :
+        class:  App\Security\Authorization\PhotoPhotoTagRelationVoter
+        public: false
+        tags:
+            - { name: security.voter }
+
+    # Security: voter (ACL) for UserProfileCel/UserCustomField/PhotoTag/UserOccurrenceTag/
+    # UserCustomFieldOccurrence entities/resources 
+    security.access.base_voter :
+        class:  App\Security\Authorization\BaseVoter
+        public: false
+        tags:
+            - { name: security.voter }
+
+
+    # ########################################################################
+    # DOCTRINE ENTITY EVENT LISTENERS
+    # ########################################################################
+
+    app.event.listener.occurrence.event.listener:
+        class: App\EventListener\OccurrenceEventListener
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: preRemove }
+
+    app.event.listener.photo.event.listener:
+        class: App\EventListener\PhotoEventListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postPersist }
+
+    app.event.listener.pdf.file.event.listener:
+        class: App\EventListener\PdfFileEventListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    app.event.listener.owned.entity.event.listener:
+        class: App\EventListener\OwnedEntityEventListener
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    app.event.listener.timestamped.entity.event.listener:
+        class: App\EventListener\TimestampedEntityEventListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    app.event.listener.photo.photo.tag.relation.event.listener:
+        class: App\EventListener\PhotoPhotoTagRelationEventListener
+        arguments: ['@fos_elastica.object_persister.photos.photo']
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postRemove }
+
+    app.event.listener.occurrence.user.occurrence.tag.relation.event.listener:
+        class: App\EventListener\OccurrenceUserOccurrenceTagRelationEventListener
+        arguments: ['@fos_elastica.object_persister.occurrences.occurrence']
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postRemove }
+
+    # This is not autowired. Thanks to API platform?
+    app.event.subscriber.add.photo.url.subscriber:
+        class: App\EventSubscriber\AddPhotoUrlSubscriber
+        tags:
+            - { name: jms_serializer.event_subscriber, event: onPreSerialize }
+
+
+    # ########################################################################
+    # RESPONSE EVENT LISTENERS
+    # ########################################################################
+
+    app.event.listener.xcount.response.listener:
+        class: App\EventListener\XcountResponseListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    # ########################################################################
+    # VALIDATORS
+    # ########################################################################
+
+    app.validator.listener.no.duplicate.constraint.validator:
+        class: App\Validator\NoDuplicateConstraintValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    # ########################################################################
+    # VICH UPLOAD - PHOTO NAMER/PHOTO DIRECTORY_NAMER
+    # ########################################################################
+
+    vich_uploader.mappings.media_object.namer:
+        class: App\Vich\TelaNamer
+        public: true
+
+    vich_uploader.mappings.media_object.directory_namer:
+        class: App\Vich\TelaDirectoryNamer
+        public: true
+
+    # ########################################################################
+    # COMMANDS
+    # ########################################################################
+
+    App\Elastica\Command\SyncDocumentIndexCommand:
+        tags:
+            - { name: 'console.command', command: 'cel:sync-es' }
+

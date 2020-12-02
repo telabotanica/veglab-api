@@ -1,0 +1,74 @@
+<?php //%255BApp%255CEntity%255CSye%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [
+                    'get' => [
+                        'method' => 'GET',
+                    ],
+                    'post' => [
+                        'method' => 'POST',
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'method' => 'GET',
+                    ],
+                    'patch' => [
+                        'method' => 'PATCH',
+                    ],
+                    'put' => [
+                        'method' => 'PUT',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'write:put',
+                            ],
+                        ],
+                    ],
+                    'delete' => [
+                        'method' => 'DELETE',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'normalization_context' => [
+                        'groups' => [
+                            'read',
+                        ],
+                        'enable_max_depth' => true,
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'write',
+                            'enable_max_depth' => true,
+                        ],
+                    ],
+                    'force_eager' => false,
+                ],
+            ],
+            'repositoryClass' => [
+                1 => 'App\\Repository\\SyeRepository',
+            ],
+            'name' => [
+                2 => 'vl_sye',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+    ],
+    []
+); }];

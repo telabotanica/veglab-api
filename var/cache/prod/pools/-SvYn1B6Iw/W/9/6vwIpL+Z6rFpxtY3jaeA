@@ -1,0 +1,146 @@
+<?php //%255BApp%255CEntity%255COccurrenceUserOccurrenceTagRelation%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\OccurrenceUserOccurrenceTagRelation',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\OccurrenceUserOccurrenceTagRelation',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'occurrence_user_occurrence_tag',
+                    'options' => [
+                        'comment' => 'Table de jointure entre occurrence et user_occurrence_tag.',
+                    ],
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'occurrence' => [
+                        'fieldName' => 'occurrence',
+                        'joinColumns' => [
+                            [
+                                'name' => 'occurrence_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [
+                            'persist',
+                        ],
+                        'inversedBy' => 'userTagRelations',
+                        'targetEntity' => 'App\\Entity\\Occurrence',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\OccurrenceUserOccurrenceTagRelation',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'occurrence_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'occurrence_id' => 'occurrence_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'occurrence_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                    'userOccurrenceTag' => [
+                        'fieldName' => 'userOccurrenceTag',
+                        'joinColumns' => [
+                            [
+                                'name' => 'user_occurrence_tag_id',
+                                'unique' => false,
+                                'nullable' => false,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'occurrenceRelations',
+                        'targetEntity' => 'App\\Entity\\UserOccurrenceTag',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\OccurrenceUserOccurrenceTagRelation',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'user_occurrence_tag_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'user_occurrence_tag_id' => 'user_occurrence_tag_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'user_occurrence_tag_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

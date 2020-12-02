@@ -1,0 +1,17 @@
+algolia_search:
+    prefix: '%env(ALGOLIA_PREFIX)%%env(TRAVIS_JOB_NUMBER)%_'
+    nbResults: 12
+    batchSize: 100
+    settingsDirectory: '/tests/cache/settings'
+    indices:
+        - name: posts
+          class: 'Algolia\SearchBundle\TestApp\Entity\Post'
+          enable_serializer_groups: true
+        - name: comments
+          class: 'Algolia\SearchBundle\TestApp\Entity\Comment'
+        - name: contents
+          class: 'Algolia\SearchBundle\TestApp\Entity\ContentAggregator'
+          index_if: isVisible
+        - name: tags
+          class: 'Algolia\SearchBundle\TestApp\Entity\Tag'
+          index_if: isPublic

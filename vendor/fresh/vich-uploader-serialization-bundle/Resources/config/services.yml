@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Fresh\VichUploaderSerializationBundle\EventListener\JmsSerializerSubscriber:
+        tags:
+            - 'jms_serializer.event_subscriber'
+            - { name: monolog.logger, channel: vich_uploader_serialization }

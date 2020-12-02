@@ -1,0 +1,110 @@
+<?php //%255BApp%255CEntity%255CChangeLog%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\ChangeLog',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\ChangeLog',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'entityId' => [
+                        'fieldName' => 'entityId',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'ID de l\'entité',
+                        ],
+                        'columnName' => 'entity_id',
+                    ],
+                    'actionType' => [
+                        'fieldName' => 'actionType',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Action sur l\'entité à répercuter dans l\'index',
+                        ],
+                        'columnName' => 'action_type',
+                    ],
+                    'entityName' => [
+                        'fieldName' => 'entityName',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Nom de l\'entité sur laquelle porte l\'action à répercuter.',
+                        ],
+                        'columnName' => 'entity_name',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'entity_id' => 'entityId',
+                    'action_type' => 'actionType',
+                    'entity_name' => 'entityName',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'entityId' => 'entity_id',
+                    'actionType' => 'action_type',
+                    'entityName' => 'entity_name',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'change_log',
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

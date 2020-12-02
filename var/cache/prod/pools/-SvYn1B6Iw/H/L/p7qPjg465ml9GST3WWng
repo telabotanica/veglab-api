@@ -1,0 +1,212 @@
+<?php //%255BApp%255CEntity%255CTableRowDefinition%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\TableRowDefinition',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\TableRowDefinition',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\TableRowDefinitionRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'rowId' => [
+                        'fieldName' => 'rowId',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'row_id',
+                    ],
+                    'type' => [
+                        'fieldName' => 'type',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 10,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'type',
+                    ],
+                    'groupId' => [
+                        'fieldName' => 'groupId',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'group_id',
+                    ],
+                    'groupTitle' => [
+                        'fieldName' => 'groupTitle',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'group_title',
+                    ],
+                    'layer' => [
+                        'fieldName' => 'layer',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'layer',
+                    ],
+                    'displayName' => [
+                        'fieldName' => 'displayName',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'display_name',
+                    ],
+                    'repository' => [
+                        'fieldName' => 'repository',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'repository',
+                    ],
+                    'repositoryIdNomen' => [
+                        'fieldName' => 'repositoryIdNomen',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'repository_id_nomen',
+                    ],
+                    'repositoryIdTaxo' => [
+                        'fieldName' => 'repositoryIdTaxo',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'columnName' => 'repository_id_taxo',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'row_id' => 'rowId',
+                    'type' => 'type',
+                    'group_id' => 'groupId',
+                    'group_title' => 'groupTitle',
+                    'layer' => 'layer',
+                    'display_name' => 'displayName',
+                    'repository' => 'repository',
+                    'repository_id_nomen' => 'repositoryIdNomen',
+                    'repository_id_taxo' => 'repositoryIdTaxo',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'rowId' => 'row_id',
+                    'type' => 'type',
+                    'groupId' => 'group_id',
+                    'groupTitle' => 'group_title',
+                    'layer' => 'layer',
+                    'displayName' => 'display_name',
+                    'repository' => 'repository',
+                    'repositoryIdNomen' => 'repository_id_nomen',
+                    'repositoryIdTaxo' => 'repository_id_taxo',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'vl_table_row_definition',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    '_table' => [
+                        'fieldName' => '_table',
+                        'joinColumns' => [
+                            [
+                                'name' => '_table_id',
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'rowsDefinition',
+                        'targetEntity' => 'App\\Entity\\Table',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\TableRowDefinition',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            '_table_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            '_table_id' => '_table_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => '_table_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

@@ -1,0 +1,147 @@
+<?php //%255BApp%255CEntity%255CUserOccurrenceTag%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\UserOccurrenceTag',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\UserOccurrenceTag',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\UserOccurrenceTagRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'userId' => [
+                        'fieldName' => 'userId',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'ID de l\'utilisateur',
+                        ],
+                        'columnName' => 'user_id',
+                    ],
+                    'name' => [
+                        'fieldName' => 'name',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 190,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Mot-clé',
+                        ],
+                        'columnName' => 'name',
+                    ],
+                    'path' => [
+                        'fieldName' => 'path',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Hiérarchie (mots clés parents séparés par des /)',
+                        ],
+                        'columnName' => 'path',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'user_id' => 'userId',
+                    'name' => 'name',
+                    'path' => 'path',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'userId' => 'user_id',
+                    'name' => 'name',
+                    'path' => 'path',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'user_occurrence_tag',
+                    'indexes' => [
+                        'user_id_idx' => [
+                            'columns' => [
+                                'user_id',
+                            ],
+                        ],
+                    ],
+                    'options' => [
+                        'comment' => 'Les noms de tags utilisateurs doivent être uniques (pour un même utilisateur).',
+                    ],
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'occurrenceRelations' => [
+                        'fieldName' => 'occurrenceRelations',
+                        'mappedBy' => 'userOccurrenceTag',
+                        'targetEntity' => 'App\\Entity\\OccurrenceUserOccurrenceTagRelation',
+                        'cascade' => [
+                            'persist',
+                            'remove',
+                        ],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\UserOccurrenceTag',
+                        'isCascadeRemove' => true,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

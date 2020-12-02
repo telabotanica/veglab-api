@@ -1,0 +1,275 @@
+<?php //%255BApp%255CEntity%255CSyntheticColumn%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\SyntheticColumn',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\SyntheticColumn',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\SyntheticColumnRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'userId' => [
+                        'fieldName' => 'userId',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'id de l\'utilisateur',
+                        ],
+                        'columnName' => 'user_id',
+                    ],
+                    'userEmail' => [
+                        'fieldName' => 'userEmail',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Email de l\'utilisateur',
+                        ],
+                        'columnName' => 'user_email',
+                    ],
+                    'userPseudo' => [
+                        'fieldName' => 'userPseudo',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'comment' => 'Pseudo de l\'utilisateur',
+                        ],
+                        'columnName' => 'user_pseudo',
+                    ],
+                    'vlWorkspace' => [
+                        'fieldName' => 'vlWorkspace',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => true,
+                        'precision' => 0,
+                        'options' => [
+                            'default' => 'none',
+                            'comment' => '[VL] Espace de travail associé à la donnée',
+                        ],
+                        'columnName' => 'vl_workspace',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'user_id' => 'userId',
+                    'user_email' => 'userEmail',
+                    'user_pseudo' => 'userPseudo',
+                    'vl_workspace' => 'vlWorkspace',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'userId' => 'user_id',
+                    'userEmail' => 'user_email',
+                    'userPseudo' => 'user_pseudo',
+                    'vlWorkspace' => 'vl_workspace',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'vl_syntetic_column',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'sye' => [
+                        'fieldName' => 'sye',
+                        'targetEntity' => 'App\\Entity\\Sye',
+                        'joinColumns' => [
+                            [
+                                'name' => 'sye_id',
+                                'referencedColumnName' => 'id',
+                                'unique' => true,
+                            ],
+                        ],
+                        'mappedBy' => null,
+                        'inversedBy' => 'syntheticColumn',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 1,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\SyntheticColumn',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'sye_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'sye_id' => 'sye_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'sye_id',
+                        ],
+                    ],
+                    '_table' => [
+                        'fieldName' => '_table',
+                        'targetEntity' => 'App\\Entity\\Table',
+                        'joinColumns' => [
+                            [
+                                'name' => '_table_id',
+                                'referencedColumnName' => 'id',
+                                'unique' => true,
+                            ],
+                        ],
+                        'mappedBy' => null,
+                        'inversedBy' => 'syntheticColumn',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 1,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\SyntheticColumn',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            '_table_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            '_table_id' => '_table_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => '_table_id',
+                        ],
+                    ],
+                    'validations' => [
+                        'fieldName' => 'validations',
+                        'mappedBy' => 'syntheticColumn',
+                        'targetEntity' => 'App\\Entity\\OccurrenceValidation',
+                        'cascade' => [
+                            'persist',
+                            'remove',
+                        ],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\SyntheticColumn',
+                        'isCascadeRemove' => true,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                    'items' => [
+                        'fieldName' => 'items',
+                        'mappedBy' => 'syntheticColumn',
+                        'targetEntity' => 'App\\Entity\\SyntheticItem',
+                        'cascade' => [
+                            'persist',
+                            'remove',
+                        ],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\SyntheticColumn',
+                        'isCascadeRemove' => true,
+                        'isCascadePersist' => true,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                    'vlBiblioSource' => [
+                        'fieldName' => 'vlBiblioSource',
+                        'joinColumns' => [
+                            [
+                                'name' => 'biblio_phyto_id',
+                                'unique' => false,
+                                'nullable' => true,
+                                'onDelete' => null,
+                                'columnDefinition' => null,
+                                'referencedColumnName' => 'id',
+                            ],
+                        ],
+                        'cascade' => [],
+                        'inversedBy' => 'syntheticColumns',
+                        'targetEntity' => 'App\\Entity\\BiblioPhyto',
+                        'fetch' => 2,
+                        'type' => 2,
+                        'mappedBy' => null,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'App\\Entity\\SyntheticColumn',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'sourceToTargetKeyColumns' => [
+                            'biblio_phyto_id' => 'id',
+                        ],
+                        'joinColumnFieldNames' => [
+                            'biblio_phyto_id' => 'biblio_phyto_id',
+                        ],
+                        'targetToSourceKeyColumns' => [
+                            'id' => 'biblio_phyto_id',
+                        ],
+                        'orphanRemoval' => false,
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

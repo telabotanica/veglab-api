@@ -1,0 +1,343 @@
+# For sortable properties, we must add a keyword type field which MUST 
+# follow the following naming convention <propertyname>'_keyword'.
+# Cause: "Fielddata is disabled on text fields by default. Set fielddata=true on [userSciName] in order to load fielddata in memory by uninverting the inverted index. 
+# *Note that this can however use significant memory*. Alternatively use a keyword field instead. [reason: all shards failed]"   
+fos_elastica:
+    clients:
+        default: {
+            host: '%env(FOS_ELASTICA_CLIENTS_DEFAULT_HOST)%',
+            port: '%env(FOS_ELASTICA_CLIENTS_DEFAULT_PORT)%',
+            username: 'elastic',
+            password: '%env(FOS_ELASTICA_PASSWORD)%'
+        }
+    indexes:
+        occurrences: 
+            index_name: '%env(FOS_ELASTICA_INDEXES_OCCURRENCES_INDEX_NAME)%'
+            settings:
+                index:
+                    analysis:
+                        analyzer:
+                            occ_analyzer:
+                                type: custom
+                                tokenizer: keyword
+                                filter: ["asciifolding", "lowercase", "french_stem"]
+                        normalizer:
+                            occ_normalizer:
+                                type: custom
+                                filter: ["asciifolding", "lowercase"]
+            types:
+                occurrence:
+                    properties:
+                        id_keyword:   
+                            type: "keyword" 
+                        geometry:               # Update VL : occurrence.geom doesn't exist
+                            type: "geo_shape"
+                        centroid:
+                            type: "geo_point"
+                        #esCentroid:
+                        #    type: "geo_point"
+                        userId: 
+                            type: "long"
+                        projectId: 
+                            type: "long"
+                        userEmail: ~
+                        userPseudo: ~
+                        observer: ~
+                        observerInstitution: ~
+                        level: ~
+                        layer: ~
+                        parentId: ~
+                        validations:
+                            type: "nested"
+                            properties:
+                                id:
+                                    type: "long"
+                                validatedBy:
+                                    type: "long"
+                                validatedAt:
+                                    type: "date"
+                                    format: 'yyyy-MM-dd HH:mm:ss'
+                                updatedBy:
+                                    type: "long"
+                                updatedAt:
+                                    type: "date"
+                                    format: 'yyyy-MM-dd HH:mm:ss'
+                                repository:
+                                    type: "text"
+                                repositoryIdNomen:
+                                    type: "long"
+                                repositoryIdTaxo:
+                                    type: "text"
+                                inputName: 
+                                    type: "text"
+                                validatedName:
+                                    type: "text"
+                                validName:
+                                    type: "text"
+                                isDiagnosis:
+                                    type: "boolean"
+                        extendedFieldOccurrences: ~
+                        flatVlObservers: ~
+                        vlObservers:
+                            type: "nested"
+                            properties:
+                                id:
+                                    type: "long"
+                                name:
+                                    type: "text"
+                        coef:
+                            type: "text"
+                        # sortable property
+                        dateObserved: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss'
+                        dateObserved_keyword:   
+                            type: "keyword" 
+                        dateObservedYear:
+                            type: "long"
+                        dateObservedMonth:
+                            type: "long"
+                        dateObservedDay:
+                            type: "long"
+                        dateCreated: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        dateCreated_keyword: 
+                            type: "keyword"
+                        dateUpdated: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        datePublished: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        # sortable property
+                        userSciName: 
+                            type: "text"
+                        userSciName_keyword:
+                            type: "keyword" 
+                            normalizer: "occ_normalizer"
+                        userSciNameId: 
+                            type: "long"
+                        acceptedSciName: ~
+                        acceptedSciNameId: 
+                            type: "long"
+                        # sortable property
+                        family:
+                            type: "text"
+                        family_keyword:
+                            type: "keyword" 
+                        plantnetId:
+                            type: "long"
+                        taxoRepo:
+                            type: "text"
+                        # sortable property
+                        certainty:
+                            type: "text"
+                        certainty_keyword:
+                            type: "keyword" 
+                        occurrenceType: ~
+                        isWild: 
+                            type: "boolean"
+                        phenology: ~
+                        sampleHerbarium: 
+                            type: "boolean"
+                        bibliographySource: ~ 
+                        inputSource: ~
+                        isPublic: 
+                            type: "boolean"
+                        isPublic_keyword:   
+                            type: "keyword" 
+                        isVisibleInCel: 
+                            type: "boolean"
+                        isVisibleInVegLab: 
+                            type: "boolean"
+                        signature: ~
+                        # sortable property
+                        elevation:
+                            type: "integer"     # Update VL : Occurrence.elevation is defined as integer
+                        elevation_keyword:
+                            type: "keyword" 
+                        geodatum: ~
+                        # sortable property
+                        locality:
+                            type: "text"
+                        locality_keyword:
+                            type: "keyword"
+                            normalizer: "occ_normalizer"
+                        localityInseeCode:
+                            type: "text"
+                        sublocality: ~
+                        environment: ~
+                        localityConsistency: ~
+                        station: ~
+                        publishedLocation: ~
+                        locationAccuracy: ~
+                        osmCounty: ~
+                        osmState: ~
+                        osmPostcode: ~
+                        osmCountry: ~
+                        osmCountryCode: ~
+                        osmId: ~
+                        osmPlaceId: ~
+                        # sortable property
+                        identiplanteScore:
+                            type: "long"
+                        identiplanteScore_keyword:
+                            type: "keyword"
+                        isIdentiplanteValidated:
+                            type: "boolean"
+                        tags: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Occurrence
+                        provider: ~
+                        finder: ~
+                            # service: app.elastica.finder.altruist.transformed.finder
+                        repository: App\Elastica\Repository\OccurrenceRepository
+                        model_to_elastica_transformer:
+                            service: app.search.occurrence_to_elastica_transformer
+                        # When deleting some entities then reloading, 
+                        # elasticsearch sometimes sometimes cries because 
+                        # he cannot find the corresponding Doctrine objects 
+                        # It happens when the index is queried before deletions 
+                        # are not yet effective in the index... 
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+
+        photos: 
+            index_name: '%env(FOS_ELASTICA_INDEXES_PHOTOS_INDEX_NAME)%'
+            settings:
+                index:
+                    analysis:
+                        analyzer:
+                            photo_analyzer:
+                                type: custom
+                                tokenizer: keyword
+                                filter: ["asciifolding", "lowercase", "french_stem"]
+                        normalizer:
+                            photo_normalizer:
+                                type: custom
+                                filter: ["asciifolding", "lowercase"]
+            types:
+                photo:
+                    properties:
+                        userId: 
+                            type: "long"
+                        userEmail: ~
+                        userPseudo: ~
+                        originalName: ~
+                        # sortable property
+                        dateShot: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        dateShot_keyword:
+                            type: "keyword"
+                        dateShotYear:
+                            type: "long"
+                        dateShotMonth:
+                            type: "long"
+                        dateShotDay:
+                            type: "long"
+                        dateObserved: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        dateObservedYear:
+                            type: "long"
+                        dateObservedMonth:
+                            type: "long"
+                        dateObservedDay:
+                            type: "long"
+                        dateCreated: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        dateCreated_keyword: 
+                            type: "keyword"
+                        dateUpdated: 
+                            type: "date"
+                            format: 'yyyy-MM-dd HH:mm:ss' 
+                        userSciName: ~
+                        userSciNameId: 
+                            type: "long"
+                        # sortable property
+                        family:
+                            type: "text"
+                        family_keyword:
+                            type: "keyword"
+                        # sortable property
+                        certainty:
+                            type: "text"
+                        certainty_keyword:
+                            type: "keyword"
+                        isPublic: 
+                            type: "boolean"
+                        # sortable property
+                        locality:
+                            type: "text"
+                        frenchDep:
+                            type: "long"
+                        locality_keyword:
+                            type: "keyword"
+                        osmCounty: ~
+                        osmCountry: ~
+                        osmCountryCode: ~
+                        projectId: 
+                            type: "long"
+                        tags: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Photo
+                        provider: ~
+                        finder: ~
+                        repository: App\Elastica\Repository\PhotoRepository
+                        model_to_elastica_transformer:
+                            service: app.search.photo_to_elastica_transformer
+
+        tables:
+            index_name: vl_tables
+            types:
+                table:
+                    properties: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Table
+                        provider: ~
+                        finder: ~
+                        repository: ~
+                        model_to_elastica_transformer:
+                            service: app.search.table_to_elastica_transformer
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+        
+        observers:
+            index_name: vl_observers
+            types:
+                observer:
+                    properties:
+                        id: ~
+                        name: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Observer
+                        provider: ~
+                        finder: ~
+                        repository: ~
+                        #model_to_elastica_transformer: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+        
+        biblio_phytos:
+            index_name: vl_biblio_phytos
+            types:
+                biblio_phyto:
+                    properties:
+                        id: ~
+                        title: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\BiblioPhyto
+                        provider: ~
+                        finder: ~
+                        repository: ~
+                        #model_to_elastica_transformer: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true

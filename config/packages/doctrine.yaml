@@ -1,0 +1,45 @@
+parameters:
+    # Adds a fallback DATABASE_URL if the env var is not set.
+    # This allows you to run cache:warmup even if your
+    # environment variables are not available yet.
+    # You should not need to change this value.
+    env(DATABASE_URL): ''
+
+doctrine:
+    dbal:
+        # configure these for your database server
+        driver: 'pdo_mysql'
+        server_version: '5.7'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
+
+        url: '%env(resolve:DATABASE_URL)%'
+        mapping_types:
+            enum: string
+        types:
+            taxorepoenum: App\DBAL\TaxoRepoEnumType
+            occurrencetypeenum: App\DBAL\OccurrenceTypeEnumType
+            inputsourceenum: App\DBAL\InputSourceEnumType
+            phenologyenum: App\DBAL\PhenologyEnumType
+            certaintyenum: App\DBAL\CertaintyEnumType
+            publishedlocationenum: App\DBAL\PublishedLocationEnumType
+            locationtypeenum: App\DBAL\LocationTypeEnumType
+            taxorestrictiontypeenum: App\DBAL\TaxoRestrictionTypeEnumType
+            fielddatatypeenum: App\DBAL\FieldDataTypeEnumType
+            languageenum: App\DBAL\LanguageEnumType
+            locationaccuracytypeenum: App\DBAL\LocationAccuracyEnumType
+            vllocationaccuracytypeenum: App\DBAL\VlLocationAccuracyEnumType
+            dateprecisionenum: App\DBAL\DatePrecisionEnumType
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App

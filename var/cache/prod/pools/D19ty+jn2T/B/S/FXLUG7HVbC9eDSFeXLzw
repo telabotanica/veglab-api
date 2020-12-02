@@ -1,0 +1,19 @@
+<?php //%255BApp%255CEntity%255CUserCustomField%2524userId%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\JoinColumn'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumn')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'user_id',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

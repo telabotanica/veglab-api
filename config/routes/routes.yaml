@@ -1,0 +1,3 @@
+index:
+    path: /cel2-client 
+    defaults: { _controller: 'App\Controller\NgClientController::index' }
