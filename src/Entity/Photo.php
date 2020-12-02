@@ -118,7 +118,7 @@ class Photo implements OwnedEntityFullInterface, TimestampedEntityInterface {
      * Idenfiant utilisateur de lu'tilisateur ayant publié l'observation (null si utilisateur anonyme).
      *
      * @Groups({"none"})
-     * @ORM\Column(name="user_id", type="integer", nullable=true, options={"comment":"ID de l'utilisateur"})
+     * @ORM\Column(name="user_id", type="string", nullable=true, options={"comment":"ID de l'utilisateur"})
      */
     private $userId = null;
 
@@ -323,12 +323,12 @@ class Photo implements OwnedEntityFullInterface, TimestampedEntityInterface {
        return $this->id;
    }
 
-    public function getUserId(): ?int {
+    public function getUserId(): ?string {
 
        return $this->userId;
    }
 
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface {
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface {
 
        $this->userId = $userId;
 

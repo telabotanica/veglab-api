@@ -40,7 +40,7 @@ class PhotoTag implements OwnedEntitySimpleInterface, TagInterface {
      * ID de l'utilisateur.
      *
      * @Groups({"read"})
-     * @ORM\Column(name="user_id", type="integer", nullable=false, options={"comment":"ID de l'utilisateur"})
+     * @ORM\Column(name="user_id", type="string", nullable=false, options={"comment":"ID de l'utilisateur"})
      */
     private $userId = null;
     
@@ -70,11 +70,11 @@ class PhotoTag implements OwnedEntitySimpleInterface, TagInterface {
         return $this->id;
     }
 
-    public function getUserId(): ?int {
+    public function getUserId(): ?string {
         return $this->userId;
     }
 
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface {
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface {
         $this->userId = $userId;
 
         return $this;

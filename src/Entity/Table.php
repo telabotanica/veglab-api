@@ -65,7 +65,7 @@ class Table implements OwnedEntityFullInterface
     *
     * Idenfiant de l'utilisateur ayant publié l'observation (null si utilisateur anonyme).
     *
-    * @ORM\Column(name="user_id", type="integer", nullable=true, options={"comment":"id de l'utilisateur"})
+    * @ORM\Column(name="user_id", type="string", nullable=true, options={"comment":"id de l'utilisateur"})
     
     */
     private $userId = null;
@@ -197,11 +197,11 @@ class Table implements OwnedEntityFullInterface
         return $this->id;
     }
 
-    public function getUserId(): ?int {
+    public function getUserId(): ?string {
         return $this->userId;
     }
 
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface {
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface {
         $this->userId = $userId;
 
         return $this;
