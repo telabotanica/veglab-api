@@ -100,7 +100,7 @@ class Table implements OwnedEntityFullInterface
     private $validations;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Groups({"read", "write"})
      */
     private $createdBy;
@@ -270,12 +270,12 @@ class Table implements OwnedEntityFullInterface
         return $this;
     }
 
-    public function getCreatedBy(): ?int
+    public function getCreatedBy(): ?string
     {
         return $this->createdBy;
     }
 
-    public function setCreatedBy(int $createdBy): self
+    public function setCreatedBy(string $createdBy): self
     {
         $this->createdBy = $createdBy;
 

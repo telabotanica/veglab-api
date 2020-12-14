@@ -53,12 +53,12 @@ fos_elastica:
                                 id:
                                     type: "long"
                                 validatedBy:
-                                    type: "long"
+                                    type: "text"
                                 validatedAt:
                                     type: "date"
                                     format: 'yyyy-MM-dd HH:mm:ss'
                                 updatedBy:
-                                    type: "long"
+                                    type: "text"
                                 updatedAt:
                                     type: "date"
                                     format: 'yyyy-MM-dd HH:mm:ss'

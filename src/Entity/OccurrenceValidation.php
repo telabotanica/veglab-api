@@ -45,7 +45,7 @@ class OccurrenceValidation {
      * User (Id) that first proposed this validation
      * 
      * @Groups({"read", "write", "write:put"})
-     * @ORM\Column(name="validated_by", type="integer", nullable=true, options={"comment":"User (Id) ayant validé"})
+     * @ORM\Column(name="validated_by", type="string", nullable=true, options={"comment":"User (Id) ayant validé"})
      */
     private $validatedBy;
 
@@ -150,11 +150,11 @@ class OccurrenceValidation {
         return $this;
     }
 
-    public function getValidatedBy(): ?int {
+    public function getValidatedBy(): ?string {
         return $this->validatedBy;
     }
 
-    public function setValidatedBy(?int $userId): self {
+    public function setValidatedBy(?string $userId): self {
         $this->validatedBy = $userId;
         return $this;
     }
