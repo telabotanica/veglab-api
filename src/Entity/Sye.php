@@ -106,6 +106,13 @@ class Sye implements OwnedEntityFullInterface
      */
     private $syntheticColumn;
 
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true, options={"comment":"Indique si le sye correspond à une colonne synthétique (ne contient pas d'occurrences", "default": false})
+     * @Groups({"read", "write", "write:put"})
+     */
+    private $syntheticSye;
+
     /**
      * @ORM\Column(type="boolean", nullable=false, options={"comment":"Indique si le sye doit être affiché uniquement sous forme d'une colonne sythétique (masque les relevés)", "default": false})
      * @Groups({"read", "write", "write:put"})
@@ -276,6 +283,16 @@ class Sye implements OwnedEntityFullInterface
         if ($newSye !== $syntheticColumn->getSye()) {
             $syntheticColumn->setSye($newSye);
         }
+
+        return $this;
+    }
+
+    public function getSyntheticSye(): ?bool {
+        return $this->syntheticSye;
+    }
+
+    public function setSyntheticSye(bool $syntheticSye): self {
+        $this->syntheticSye = $syntheticSye;
 
         return $this;
     }
