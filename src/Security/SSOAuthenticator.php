@@ -62,7 +62,8 @@ class SSOAuthenticator extends AbstractGuardAuthenticator {
         $credentials, UserProviderInterface $userProvider) {
         // REST Web services are stateless, pass a "blank" user to provider:
         return $userProvider->refreshUser(
-            new TelaBotanicaUser('', '', '', '', '', '', '', array(), null, ''));
+            // new TelaBotanicaUser('', '', '', '', '', '', '', array(), null, ''));
+            new TelaBotanicaUser('', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', ''));
     }
 
     /**

@@ -30,7 +30,7 @@ use App\DBAL\InputSourceEnumType;
 
 class AppFixtures extends Fixture {
 
-    private function loadDaUserProfile(ObjectManager $manager, int $userId) {
+    private function loadDaUserProfile(ObjectManager $manager, string $userId) {
 
         $userProfile = new UserProfileCel();
         $userProfile->setLanguage('EN');
@@ -52,7 +52,7 @@ class AppFixtures extends Fixture {
     }
 
     private function loadDaOccTagHierarchy(
-        ObjectManager $manager, int $userId) {
+        ObjectManager $manager, string $userId) {
 
         $occTag = new UserOccurrenceTag();
         $occTag->setUserId($userId);
@@ -86,8 +86,8 @@ class AppFixtures extends Fixture {
      */
     public function load(ObjectManager $manager) {
 
-        $user22Id = 22;
-        $user23Id = 23;
+        $user22Id = "22";
+        $user23Id = "23";
         $tbProj = $this->loadDaTelaBotanicaProject($manager);
         $userProfile22 = $this->loadDaUserProfile($manager, $user22Id);
         $userProfile23 = $this->loadDaUserProfile($manager, $user23Id);

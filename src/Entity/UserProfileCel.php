@@ -46,7 +46,7 @@ class UserProfileCel {
    /**
     *
     * @Assert\NotNull
-    * @ORM\Column(type="integer", nullable=false, unique=true)
+    * @ORM\Column(type="string", nullable=false, unique=true)
     * @Groups({"read"})    
     */
    private $userId = null;
@@ -110,12 +110,12 @@ class UserProfileCel {
         return $this->id;
     }
 
-   public function getUserId(): ?int
+   public function getUserId(): ?string
    {
        return $this->userId;
    }
 
-   public function setUserId(?int $userId): self
+   public function setUserId(?string $userId): self
    {
        $this->userId = $userId;
 

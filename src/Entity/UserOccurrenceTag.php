@@ -46,7 +46,7 @@ class UserOccurrenceTag implements OwnedEntitySimpleInterface, TagInterface {
     * Idenfiant utilisateur de lu'tilisateur ayant publié l'observation (null si utilisateur anonyme).
     *
     * @Groups({"read"})
-    * @ORM\Column(name="user_id", type="integer", nullable=false, options={"comment":"ID de l'utilisateur"})
+    * @ORM\Column(name="user_id", type="string", nullable=false, options={"comment":"ID de l'utilisateur"})
     */
    private $userId = null;
 
@@ -85,12 +85,12 @@ class UserOccurrenceTag implements OwnedEntitySimpleInterface, TagInterface {
         return $this->id;
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface
     {
         $this->userId = $userId;
 

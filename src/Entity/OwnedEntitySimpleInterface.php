@@ -10,7 +10,7 @@ namespace App\Entity;
  */
 interface OwnedEntitySimpleInterface {
 
-    public function getUserId(): ?int;   
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface;
+    public function getUserId(): ?string;   
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface;
 
 }

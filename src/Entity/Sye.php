@@ -54,7 +54,7 @@ class Sye implements OwnedEntityFullInterface
     *
     * Idenfiant de l'utilisateur ayant publié l'observation (null si utilisateur anonyme).
     *
-    * @ORM\Column(name="user_id", type="integer", nullable=true, options={"comment":"id de l'utilisateur"})
+    * @ORM\Column(name="user_id", type="string", nullable=true, options={"comment":"id de l'utilisateur"})
     */
     private $userId = null;
 
@@ -106,6 +106,13 @@ class Sye implements OwnedEntityFullInterface
      */
     private $syntheticColumn;
 
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true, options={"comment":"Indique si le sye correspond à une colonne synthétique (ne contient pas d'occurrences", "default": false})
+     * @Groups({"read", "write", "write:put"})
+     */
+    private $syntheticSye;
+
     /**
      * @ORM\Column(type="boolean", nullable=false, options={"comment":"Indique si le sye doit être affiché uniquement sous forme d'une colonne sythétique (masque les relevés)", "default": false})
      * @Groups({"read", "write", "write:put"})
@@ -156,11 +163,11 @@ class Sye implements OwnedEntityFullInterface
         return $this;
     }
 
-    public function getUserId(): ?int {
+    public function getUserId(): ?string {
         return $this->userId;
     }
 
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface {
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface {
         $this->userId = $userId;
 
         return $this;
@@ -276,6 +283,16 @@ class Sye implements OwnedEntityFullInterface
         if ($newSye !== $syntheticColumn->getSye()) {
             $syntheticColumn->setSye($newSye);
         }
+
+        return $this;
+    }
+
+    public function getSyntheticSye(): ?bool {
+        return $this->syntheticSye;
+    }
+
+    public function setSyntheticSye(bool $syntheticSye): self {
+        $this->syntheticSye = $syntheticSye;
 
         return $this;
     }

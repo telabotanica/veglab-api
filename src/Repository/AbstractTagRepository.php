@@ -23,7 +23,7 @@ abstract class AbstractTagRepository extends ServiceEntityRepository {
      * @return UserOccurrenceTag[] Returns an array of UserOccurrenceTag 
      * entities with the given user id.
      */
-    protected function findByUserId(int $userId) {
+    protected function findByUserId(string $userId) {
         return $this->createQueryBuilder('p')
             ->andWhere('p.userId = :val2')
             ->setParameter('val2', $userId)
@@ -32,7 +32,7 @@ abstract class AbstractTagRepository extends ServiceEntityRepository {
             ->getResult();
     }
 
-    protected function findByPathAndUserId(string $path, int $userId) {
+    protected function findByPathAndUserId(string $path, string $userId) {
         return $this->createQueryBuilder('p')
             ->andWhere('p.path = :val1')
             ->setParameter('val1', $path)
@@ -50,7 +50,7 @@ abstract class AbstractTagRepository extends ServiceEntityRepository {
      *
      * @return the tree of tag entities for the user with the given ID. 
      */
-    public function getTagTree(int $userId) {
+    public function getTagTree(string $userId) {
         $tree = [];
         $rootTags = $this->findByPathAndUserId('/', $userId);
         $tagHierarchy = array();
@@ -63,14 +63,14 @@ abstract class AbstractTagRepository extends ServiceEntityRepository {
         return $tree;
     }
 
-    protected function findChildren(string $tagName, int $userId) {
+    protected function findChildren(string $tagName, string $userId) {
         return $this->getEntityManager()->createQuery($this->getFindChildrenQuery())
             ->setParameter('parentName', '%'.$tagName)
             ->setParameter('userId', $userId)
             ->getResult();
     }
 
-    private function generateTagTree(TagInterface $entity, &$arr = [], int $userId) {
+    private function generateTagTree(TagInterface $entity, &$arr = [], string $userId) {
         $name = $entity->getName();
         $children = $this->findChildren($entity->getName(), $userId);
         $arr += [$entity->getName() => null];

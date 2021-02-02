@@ -37,7 +37,7 @@ fos_elastica:
                         #esCentroid:
                         #    type: "geo_point"
                         userId: 
-                            type: "long"
+                            type: "text"
                         projectId: 
                             type: "long"
                         userEmail: ~
@@ -53,12 +53,12 @@ fos_elastica:
                                 id:
                                     type: "long"
                                 validatedBy:
-                                    type: "long"
+                                    type: "text"
                                 validatedAt:
                                     type: "date"
                                     format: 'yyyy-MM-dd HH:mm:ss'
                                 updatedBy:
-                                    type: "long"
+                                    type: "text"
                                 updatedAt:
                                     type: "date"
                                     format: 'yyyy-MM-dd HH:mm:ss'
@@ -222,7 +222,7 @@ fos_elastica:
                 photo:
                     properties:
                         userId: 
-                            type: "long"
+                            type: "text"
                         userEmail: ~
                         userPseudo: ~
                         originalName: ~

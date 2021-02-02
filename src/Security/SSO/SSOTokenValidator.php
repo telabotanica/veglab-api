@@ -7,28 +7,24 @@ use App\Security\SSO\MisconfiguredSSOTokenValidatorException;
 use Symfony\Component\Dotenv\Dotenv;
 
 /**
- * Authentication and user management using Tela Botanica's SSO
+ * Authentication and user management using SSO
  *
  * @todo : param vide constructeur
  */
 class SSOTokenValidator {
 
-	/** The URL for the "annuaire" SSO Web Service */
-	protected $annuaireURL;
-	/** The URL for the "annuaire" SSO Web Service */
+	protected $ssoGetUserInfoURL;	// Keycloak userInfo endpoint ; used to check user's token
 	protected $ignoreSSLIssues = false;
 
 	public function __construct() {
 	    $this->annuaireURL = getenv('SSO_ANNUAIRE_URL');
-	    $this->ignoreSSLIssues = getenv('IGNORE_SSL_ISSUES');
+			$this->ignoreSSLIssues = getenv('IGNORE_SSL_ISSUES');
+			$this->ssoGetUserInfoURL = getenv('SSO_USERINFO_URL');
 	}
 
-	private function generateAuthCheckURL($token) {
+	private function generateAuthCheckURL() {
 		$verificationServiceURL = $this->annuaireURL;
-		$verificationServiceURL = trim($verificationServiceURL, '/') . "/verifytoken";
-		$verificationServiceURL .= "?token=" . $token;
-
-        return $verificationServiceURL;
+		return $verificationServiceURL;
 	}
 
 	/**
@@ -38,11 +34,19 @@ class SSOTokenValidator {
 		if ( empty($this->annuaireURL) ) {
 			throw new MisconfiguredSSOTokenValidatorException();
 		}
-		$verificationServiceURL = $this->generateAuthCheckURL($token);
-		$verificationServiceURL = str_replace('Bearer ', '', $verificationServiceURL); // On my local dev (using 'annuaire' Docker image), $token contains 'Bearer ' + token key
+		$verificationServiceURL = $this->generateAuthCheckURL();
 		$ch = curl_init();
 		$timeout = 5;
-		curl_setopt($ch, CURLOPT_URL, $verificationServiceURL);
+
+		curl_setopt($ch, CURLOPT_URL, $this->ssoGetUserInfoURL);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $token));
+
+		// if ($_SERVER['HTTP_HOST'] == 'localhost:8080') {
+		// 	// Proxy for Docker
+		// 	curl_setopt($ch, CURLOPT_PROXY, $_SERVER['SERVER_ADDR'] . ':' .  $_SERVER['SERVER_PORT']);
+		// }
+		curl_setopt($ch, CURLINFO_HEADER_OUT, 1); // Debug purpose
+		curl_setopt($ch, CURLOPT_HEADER, 1); // Debug
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 		// equivalent of "-k", ignores SSL self-signed certificate issues
@@ -55,12 +59,15 @@ class SSOTokenValidator {
 		$data = curl_exec($ch);
 
         if ( curl_errno($ch) ) {
-            throw new \Exception ('curl erreur: ' . curl_errno($ch));
-        }
+            throw new \Exception ('curl erreur ' . curl_errno($ch) . ' : ' . curl_error($ch));
+				}
+
 		curl_close($ch);
 		$info = $data;
 
 		$info = json_decode($info, true);
+
+		return true;
 		return ($info === true);
 	}
 

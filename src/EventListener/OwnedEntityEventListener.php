@@ -69,7 +69,7 @@ class OwnedEntityEventListener {
                 }
             }
         } else {
-            $entity->setUserId(-1);
+            $entity->setUserId("-1");
         }
     }
 

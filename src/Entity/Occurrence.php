@@ -140,7 +140,7 @@ class Occurrence implements OwnedEntityFullInterface, TimestampedEntityInterface
     *
     * Idenfiant de l'utilisateur ayant publié l'observation (null si utilisateur anonyme).
     *
-    * @ORM\Column(name="user_id", type="integer", nullable=true, options={"comment":"id de l'utilisateur ayant saisi l'obs (seulement identification de tela, si utilisateur non inscrit ce champ est vide)"})
+    * @ORM\Column(name="user_id", type="string", nullable=true, options={"comment":"id de l'utilisateur ayant saisi l'obs (seulement identification de tela, si utilisateur non inscrit ce champ est vide)"})
     */
    private $userId = null;
 
@@ -804,11 +804,11 @@ class Occurrence implements OwnedEntityFullInterface, TimestampedEntityInterface
         return $this;
     }
 
-    public function getUserId(): ?int {
+    public function getUserId(): ?string {
         return $this->userId;
     }
 
-    public function setUserId(?int $userId): OwnedEntitySimpleInterface {
+    public function setUserId(?string $userId): OwnedEntitySimpleInterface {
         $this->userId = $userId;
 
         return $this;

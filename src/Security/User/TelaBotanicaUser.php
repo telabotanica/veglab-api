@@ -12,33 +12,82 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  */
 class TelaBotanicaUser implements UserInterface, EquatableInterface {
 
+    // private $id;
+    // private $email;
+    // private $pseudo;
+    // private $avatar;
+    // private $surname;
+    // private $lastName;
+    // private $username;
+    // private $usePseudo;
+    // private $administeredProjectId;
+    // private $roles;
+
     private $id;
+
     private $email;
-    private $pseudo;
-    private $avatar;
-    private $surname;
-    private $lastName;
-    private $username;
-    private $usePseudo;
-    private $administeredProjectId;
-    private $roles;
+    private $email_verified;
+    private $name;
+    private $family_name;
+    private $given_name;
+    private $preferred_username;
+
+    private $exp;
+    private $acr;
+    private $allowed_origins;
+    private $azp;
+    private $iat;
+    private $iss;
+    private $jti;
+    private $resource_access;
+    private $scope;
+    private $session_state;
+    private $sub;
+    private $typ;
 
     const ADMIN_ROLE = "administrator";
 
+    // public function __construct(
+    //     $id, $email, $surname, $lastName, $pseudo, $usePseudo, $avatar, 
+    //     array $roles, $administeredProjectId, $token) {
+
+    //     $this->id = $id;
+    //     $this->email = $email;
+    //     $this->surname = $surname;
+    //     $this->lastName = $lastName;
+    //     $this->pseudo = $pseudo;
+    //     $this->usePseudo = $usePseudo;
+    //     $this->avatar = $avatar;
+    //     $this->administeredProjectId = $administeredProjectId;
+	// $this->roles = $roles;
+	// $this->token = $token;
+    // }
+
     public function __construct(
-        $id, $email, $surname, $lastName, $pseudo, $usePseudo, $avatar, 
-        array $roles, $administeredProjectId, $token) {
+        $id, $email, $email_verified, $name, $family_name, $given_name, $preferred_username, 
+        $exp, $acr, $allowed_origins, $azp, $iat, $iss, $jti, $resource_access,
+        $scope, $session_state, $sub, $typ) {
 
         $this->id = $id;
         $this->email = $email;
-        $this->surname = $surname;
-        $this->lastName = $lastName;
-        $this->pseudo = $pseudo;
-        $this->usePseudo = $usePseudo;
-        $this->avatar = $avatar;
-        $this->administeredProjectId = $administeredProjectId;
-	$this->roles = $roles;
-	$this->token = $token;
+        $this->email_verified = $email_verified;
+        $this->name = $name;
+        $this->family_name = $family_name;
+        $this->given_name = $given_name;
+        $this->preferred_username = $preferred_username;
+        $this->exp = $exp;
+        $this->acr = $acr;
+        $this->allowed_origins = $allowed_origins;
+        $this->azp = $azp;
+        $this->iat = $iat;
+        $this->iss = $iss;
+        $this->jti = $jti;
+        $this->resource_access = $resource_access;
+        $this->scope = $scope;
+        $this->session_state = $session_state;
+        $this->sub = $sub;
+        $this->typ = $typ;
+	    // $this->token = $token;
     }
 
     public function setId($idd) {
@@ -52,11 +101,11 @@ class TelaBotanicaUser implements UserInterface, EquatableInterface {
     }
 
     public function isTelaBotanicaAdmin() {
-        return in_array(TelaBotanicaUser::ADMIN_ROLE, $this->roles);
+        return false; // in_array(TelaBotanicaUser::ADMIN_ROLE, $this->roles);
     }
 
     public function isProjectAdmin() {
-        return ( null !== $this->administeredProjectId );
+        return false; // ( null !== $this->administeredProjectId );
     }
 
     public function isLuser() {
@@ -66,7 +115,7 @@ class TelaBotanicaUser implements UserInterface, EquatableInterface {
     }
 
     public function getRoles() {
-        return $this->roles;
+        return array(); // $this->roles;
     }
 
     public function getSurname() {
@@ -78,11 +127,11 @@ class TelaBotanicaUser implements UserInterface, EquatableInterface {
     }
 
     public function getAvatar() {
-        return $this->avatar;
+        return ''; // $this->avatar;
     }
 
     public function getAdministeredProjectId() {
-        return $this->administeredProjectId;
+        return ''; // $this->administeredProjectId;
     }
 
     public function getPassword() {
@@ -99,11 +148,11 @@ class TelaBotanicaUser implements UserInterface, EquatableInterface {
     }
 
     public function getUsername() {
-        return $this->username;
+        return $this->given_name . ' ' . $this->family_name;
     }
 
     public function getPseudo() {
-        return $this->pseudo;
+        return $this->preferred_username;
     }
 
     public function getToken() {
@@ -118,7 +167,7 @@ class TelaBotanicaUser implements UserInterface, EquatableInterface {
             return false;
         }
 
-        if ($this->username !== $user->getUsername()) {
+        if ($this->given_name . ' ' . $this->family_name !== $user->getUsername()) {
             return false;
         }
 

@@ -47,21 +47,29 @@ class SSOUserExtractor {
         }
 
         $tokenDecoder = new SSOTokenDecoder();
-// die(var_dump($tokenDecoder)); 
         $userInfo = $tokenDecoder->getUserFromToken($token);
-        // $userInfo['avatar'] = '';
-        //$role = new Role();
-        $roles = array();
-
-// Above code deleted: ERROR `Undefined index: permissions`
         
-//die(var_dump($userInfo)); 
         $user = new TelaBotanicaUser(
-            intval($userInfo['id']), $userInfo['sub'], $userInfo['prenom'], 
-            $userInfo['nom'], $userInfo['pseudo'], 
-            $userInfo['pseudoUtilise'], $userInfo['avatar'], 
-            $roles, null, $token);
-//die(var_dump($user));  
+                $userInfo['id'],
+                $userInfo['email'],
+                $userInfo['email_verified'],
+                $userInfo['name'],
+                $userInfo['family_name'],
+                $userInfo['given_name'],
+                $userInfo['preferred_username'],
+                $userInfo['exp'],
+                $userInfo['acr'],
+                $userInfo['allowed-origins'],
+                $userInfo['azp'],
+                $userInfo['iat'],
+                $userInfo['iss'],
+                $userInfo['jti'],
+                $userInfo['resource_access'],
+                $userInfo['scope'],
+                $userInfo['session_state'],
+                $userInfo['sub'],
+                $userInfo['typ']);
+
         // Returns the user, checkCredentials() is gonna be called
         return $user;
     }
@@ -79,13 +87,11 @@ class SSOUserExtractor {
      * success), else false.
      */
     public function validateToken(string $token): bool {
-//die(var_dump($token));
         if (null === $token) {
             return false;
         }
 
         $tokenValidator = new SSOTokenValidator();
-return true;
         return $tokenValidator->validateToken($token);
     }
 }
