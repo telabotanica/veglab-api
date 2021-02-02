@@ -59,7 +59,8 @@ class OccurrenceToElasticaTransformer implements ModelToElasticaTransformerInter
                 'repositoryIdTaxo' => $validation->getRepositoryIdTaxo(),
                 'inputName' => $validation->getInputName(),
                 'validatedName' => $validation->getValidatedName(),
-                'validName' => $validation->getValidName()
+                'validName' => $validation->getValidName(),
+                'userIdValidation' => $validation->getUserIdValidation()
             );
             $validations[] = $v;
         }

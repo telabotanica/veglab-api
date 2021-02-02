@@ -61,7 +61,7 @@ class OccurrenceValidation {
      * User (Id) that updated the validation
      *
      * @Groups({"read", "write", "write:put"})
-     * @ORM\Column(name="updated_by", type="integer", nullable=true, options={"comment":"Utilisateur (Id) ayant mis à jour la validation"})
+     * @ORM\Column(name="updated_by", type="string", nullable=true, options={"comment":"Utilisateur (Id) ayant mis à jour la validation"})
      */
     private $updatedBy;
 
@@ -135,6 +135,15 @@ class OccurrenceValidation {
      * @ORM\ManyToOne(targetEntity="App\Entity\Sye", inversedBy="validations")
      */
     private $sye;
+
+    /**
+     * The ID of the user that has proposed this validation
+     * It meens that this validation belongs to him
+     * 
+     * @Groups({"read", "write"})
+     * @ORM\Column(name="user_id_validation", type="string", nullable=true, options={"comment":"Validation par un utilistaeur (sa propre validation)"})
+     */
+    private $userIdValidation;
        
     public function getId(): ?int {
         return $this->id;
@@ -168,11 +177,11 @@ class OccurrenceValidation {
         return $this;
     }
 
-    public function getUpdatedBy(): ?int {
+    public function getUpdatedBy(): ?String {
         return $this->updatedBy;
     }
 
-    public function setUpdatedBy(?int $userId): self {
+    public function setUpdatedBy(?String $userId): self {
         $this->updatedBy = $userId;
         return $this;
     }
@@ -273,6 +282,15 @@ class OccurrenceValidation {
     {
         $this->sye = $sye;
 
+        return $this;
+    }
+    
+    public function getUserIdValidation(): ?String {
+        return $this->userIdValidation;
+    }
+
+    public function setUserIdValidation(?String $id): self {
+        $this->userIdValidation = $id;
         return $this;
     }
 
