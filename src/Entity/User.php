@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(attributes={
+ *      "normalization_context"={"groups"={"read"}},
+ *      "denormalization_context"={"groups"={"write"}}
+ * })
  * @ApiFilter(SearchFilter::class, properties={"ssoId": "exact"})
  * 
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -20,44 +24,55 @@ class User
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $ssoId;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"read", "write"})
      */
     private $enabled;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups({"read", "write"})
      */
     private $emailVerified;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read", "write"})
      */
     private $email;
 
+    /**
+     * @Groups({"read", "write"})
+     */
     private $password;
 
     public function getId(): ?int
