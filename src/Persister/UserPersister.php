@@ -26,7 +26,8 @@ final class UserPersister implements ContextAwareDataPersisterInterface
     {
       // $data instance of User ?
       if (!is_a($data, User::class)) {
-        throw new Error("UserPersister nécessite un objet de type 'User' en entrée.");
+        $this->decorated->persist($data, $context);
+        return;
       }
 
       // Get data
