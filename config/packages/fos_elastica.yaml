@@ -307,7 +307,7 @@ fos_elastica:
                             service: app.search.table_to_elastica_transformer
                         elastica_to_model_transformer:
                             ignore_missing: true
-        
+
         observers:
             index_name: vl_observers
             types:
@@ -324,7 +324,7 @@ fos_elastica:
                         #model_to_elastica_transformer: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
-        
+
         biblio_phytos:
             index_name: vl_biblio_phytos
             types:
@@ -339,5 +339,35 @@ fos_elastica:
                         finder: ~
                         repository: ~
                         #model_to_elastica_transformer: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+
+        users:
+            index_name: vl_users
+            types:
+                user:
+                    properties:
+                        id:
+                            type: "integer"
+                        ssoId:
+                            type: "text"
+                        username:
+                            type: "text"
+                        enabled:
+                            type: "boolean"
+                        emailVerified:
+                            type: "boolean"
+                        firstName:
+                            type: "text"
+                        lastName:
+                            type: "text"
+                        email:
+                            type: "text"
+                    persistence:
+                        driver: orm
+                        model: App\Entity\User
+                        provider: ~
+                        finder: ~
+                        repository: ~
                         elastica_to_model_transformer:
                             ignore_missing: true

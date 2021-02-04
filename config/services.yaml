@@ -198,6 +198,15 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
 
     # ########################################################################
+    # DATA PERSISTER
+    # ########################################################################
+    App\Persister\UserPersister:
+        decorates: 'api_platform.doctrine.orm.data_persister'
+        # Uncomment only if autoconfiguration is disabled
+        #arguments: ['@App\DataPersister\UserDataPersister.inner']
+        #tags: [ 'api_platform.data_persister' ]
+
+    # ########################################################################
     # VICH UPLOAD - PHOTO NAMER/PHOTO DIRECTORY_NAMER
     # ########################################################################
 
