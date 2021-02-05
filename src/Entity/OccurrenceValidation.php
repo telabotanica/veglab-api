@@ -66,6 +66,38 @@ class OccurrenceValidation {
     private $updatedBy;
 
     /**
+    * @Groups({"read", "write"})
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="validation")
+    * @ORM\JoinColumn(name="vl_user_id", referencedColumnName="id")
+    */
+    private $user;
+
+    public function getUser(): ?User {
+       return $this->user;
+    }
+
+    public function setUser(User $user): self {
+       $this->user = $user;
+       return $this;
+    }
+
+    /**
+    * @Groups({"read", "write"})
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userValidation")
+    * @ORM\JoinColumn(name="vl_user_validation_id", referencedColumnName="id")
+    */
+    private $userValidation;
+
+    public function getUserValidation(): ?User {
+       return $this->userValidation;
+    }
+
+    public function setUserValidation(?User $userValidation): self {
+       $this->userValidation = $userValidation;
+       return $this;
+    }
+
+    /**
      * Updated validation date
      * 
      * @Groups({"read", "write", "write:put"})

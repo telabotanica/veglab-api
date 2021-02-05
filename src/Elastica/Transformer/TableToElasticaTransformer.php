@@ -42,6 +42,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
 
     $data['userId']           = $table->getUserId();
     $date['userPseudo']       = $table->getUserPseudo();
+    $data['user']             = $table->getUser();
 
     $data['createdBy']        = $table->getCreatedBy();
     $data['createdAt']        = $this->getFormattedDate($table->getCreatedAt());

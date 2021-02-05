@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="vl_user")
  */
 class User
-{
+{    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -74,6 +74,108 @@ class User
      * @Groups({"read", "write"})
      */
     private $password;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Occurrence")
+     */
+    private $occurrence;
+
+    public function getOccurrence(): ?Occurrence
+    {
+        return $this->occurrence;
+    }
+
+    public function setOccurrence(?Occurrence $occurrence): self
+    {
+        $this->occurrence = $occurrence;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Table")
+     */
+    private $table;
+
+    public function getTable(): ?Table
+    {
+        return $this->table;
+    }
+
+    public function setTable(?Table $table): self
+    {
+        $this->table = $table;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\OccurrenceValidation")
+     */
+    private $validation;
+
+    public function getValidation(): ?OccurrenceValidation
+    {
+        return $this->validation;
+    }
+
+    public function setValidation(?OccurrenceValidation $validation): self
+    {
+        $this->validation = $validation;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\OccurrenceValidation")
+     */
+    private $userValidation;
+
+    public function getUserValidation(): ?OccurrenceValidation
+    {
+        return $this->userValidation;
+    }
+
+    public function setUserValidation(?OccurrenceValidation $userValidation): self
+    {
+        $this->userValidation = $userValidation;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sye")
+     */
+    private $sye;
+
+    public function getSye(): ?Sye
+    {
+        return $this->sye;
+    }
+
+    public function setSye(?Sye $sye): self
+    {
+        $this->sye = $sye;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SyntheticColumn")
+     */
+    private $syntheticColumn;
+
+    public function getSyntheticColumn(): ?SyntheticColumn
+    {
+        return $this->syntheticColumn;
+    }
+
+    public function setSyntheticColumn(?SyntheticColumn $syntheticColumn): self
+    {
+        $this->syntheticColumn = $syntheticColumn;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -169,7 +271,7 @@ class User
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 

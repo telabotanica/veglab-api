@@ -45,6 +45,17 @@ class OccurrenceToElasticaTransformer implements ModelToElasticaTransformerInter
             $tags[] = $tag->getName();
         }
 
+        // VL USER
+        $u = $occ->getUser();
+        $vlUser = (object)array(
+            'id' => $u->getId(),
+            'ssoId' => $u->getSsoId(),
+            'firstName' => $u->getFirstName(),
+            'lastName' => $u->getLastName(),
+            'username' => $u->getUsername(),
+            'email' => $u->getEmail()
+        );
+
         // VL Validation
         // Ignored for CEL occurrence (no validations data)
         foreach($occ->getValidations() as $validation) {
@@ -52,6 +63,7 @@ class OccurrenceToElasticaTransformer implements ModelToElasticaTransformerInter
                 'id' => $validation->getId(),
                 'validatedBy' => $validation->getValidatedBy(),
                 'validatedAt' => $validation->getValidatedAt() ? $validation->getValidatedAt()->format('Y-m-d H:i:s') : null,
+                'user' => $vlUser,
                 'updatedBy' => $validation->getUpdatedBy(),
                 'updatedAt' => $validation->getUpdatedAt() ? $validation->getUpdatedAt()->format('Y-m-d H:i:s') : null,
                 'repository' => $validation->getRepository(),
@@ -221,6 +233,7 @@ class OccurrenceToElasticaTransformer implements ModelToElasticaTransformerInter
 		$data['userId'] = $occ->getUserId();
 		$data['userEmail'] = $occ->getUserEmail();
 		$data['userPseudo'] = $occ->getUserPseudo();
+        $data['user'] = $vlUser;
 		$data['observer'] = $occ->getObserver();
         $data['observerInstitution'] = $occ->getObserverInstitution();
         $data['vlObservers']= $vlObservers;

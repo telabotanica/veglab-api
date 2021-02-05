@@ -74,6 +74,22 @@ class Sye implements OwnedEntityFullInterface
     private $userPseudo = null;
 
     /**
+    * @Groups({"read", "write"})
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="sye")
+    * @ORM\JoinColumn(name="vl_user_id", referencedColumnName="id")
+    */
+    private $user;
+
+    public function getUser(): ?User {
+       return $this->user;
+    }
+
+    public function setUser(User $user): self {
+       $this->user = $user;
+       return $this;
+    }
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"read", "write", "write:put"})
      */

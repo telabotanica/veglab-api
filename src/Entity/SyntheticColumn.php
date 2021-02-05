@@ -70,6 +70,22 @@ class SyntheticColumn implements OwnedEntityFullInterface
     private $userPseudo = null;
 
     /**
+    * @Groups({"read", "write"})
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="syntheticColumn")
+    * @ORM\JoinColumn(name="vl_user_id", referencedColumnName="id")
+    */
+    private $user;
+
+    public function getUser(): ?User {
+       return $this->user;
+    }
+
+    public function setUser(User $user): self {
+       $this->user = $user;
+       return $this;
+    }
+
+    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Sye", inversedBy="syntheticColumn")
      * @Groups({"read", "write", "write:put"})
      * @ApiSubresource(maxDepth=1)

@@ -31,6 +31,7 @@ use App\Entity\OwnedEntitySimpleInterface;
 use App\Entity\TimestampedEntityInterface;
 use App\Entity\Sye;
 use App\Entity\Observer;
+use App\Entity\User;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
@@ -209,6 +210,22 @@ class Occurrence implements OwnedEntityFullInterface, TimestampedEntityInterface
     * @ORM\Column(name="user_pseudo", type="string", nullable=true, options={"comment":"Pseudo de l'utilisateur ayant saisi l'obs. Nom/Prénom si non renseigné."})
     */
    private $userPseudo = null;
+
+   /**
+    * @Groups({"read", "write"})
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="occurrence")
+    * @ORM\JoinColumn(name="vl_user_id", referencedColumnName="id")
+    */
+   private $user;
+
+   public function getUser(): ?User {
+      return $this->user;
+   }
+
+    public function setUser(User $user): self {
+       $this->user = $user;
+       return $this;
+    }
 
    /**
     * Observateur.
