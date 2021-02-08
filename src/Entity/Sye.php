@@ -267,7 +267,7 @@ class Sye implements OwnedEntityFullInterface
         return $this->validations;
     }
 
-    public function addValidation(OccurrenceValidation $validation): self {
+    public function addValidation(?OccurrenceValidation $validation): self {
         if (!$this->validations->contains($validation)) {
            $this->validations[] = $validation;
            $validation->setSye($this);

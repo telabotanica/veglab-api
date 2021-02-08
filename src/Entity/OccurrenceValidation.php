@@ -155,16 +155,19 @@ class OccurrenceValidation {
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SyntheticColumn", inversedBy="validations")
+     * @ORM\JoinColumn(name="synthethic_column_id", referencedColumnName="id", nullable=true)
      */
     private $syntheticColumn;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Table", inversedBy="validations")
+     * @ORM\JoinColumn(name="_table_id", referencedColumnName="id", nullable=true)
      */
     private $_table;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Sye", inversedBy="validations")
+     * @ORM\JoinColumn(name="sye_id", referencedColumnName="id", nullable=true)
      */
     private $sye;
 
