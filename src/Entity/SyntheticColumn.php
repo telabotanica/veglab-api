@@ -128,10 +128,19 @@ class SyntheticColumn implements OwnedEntityFullInterface
      */
     private $vlWorkspace;
 
+    /**
+     * The values for ExtendedField attached to this occurrence.
+     *
+     * @ORM\OneToMany(targetEntity="ExtendedFieldOccurrence", mappedBy="syntheticColumn", cascade={"persist", "remove"})
+     * @Groups({"read", "write"})
+     */
+    private $extendedFieldOccurrences;
+
     public function __construct()
     {
         $this->validations = new ArrayCollection();
         $this->items = new ArrayCollection();
+        $this->extendedFieldOccurrences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,6 +280,34 @@ class SyntheticColumn implements OwnedEntityFullInterface
     public function setVlWorkspace(?string $vlWorkspace): self {
         $this->vlWorkspace = $vlWorkspace;
 
+        return $this;
+    }
+
+    /**
+    * @return Collection|ExtendedFieldOccurrence[]
+    */
+    public function getExtendedFieldOccurrences(): Collection {
+        return $this->extendedFieldOccurrences;
+    }
+
+    public function addExtendedFieldOccurrence(ExtendedFieldOccurrence $extendedFieldOccurrence): self {
+        if (!$this->extendedFieldOccurrences->contains($extendedFieldOccurrence)) {
+           $this->extendedFieldOccurrences[] = $extendedFieldOccurrence;
+           $extendedFieldOccurrence->setSyntheticColumn($this);
+        }           
+        return $this;
+    }
+
+    public function removeExtendedFieldOccurrence(ExtendedFieldOccurrence $extendedFieldOccurrence): self {
+
+       if ($this->extendedFieldOccurrences->contains($extendedFieldOccurrence)) {
+           $this->extendedFieldOccurrences->removeElement($extendedFieldOccurrence);
+           // set the owning side to null (unless already changed)
+           if ($extendedFieldOccurrence->getSyntheticColumn() === $this) {
+               $extendedFieldOccurrence->setSyntheticColumn(null);
+           }
+       }
+       
         return $this;
     }
 }

@@ -39,9 +39,25 @@ class ExtendedFieldOccurrence {
      * @Assert\NotNull
      * No need to add the "write" context, Occurrence->addExtendedField() do the job
      * @ORM\ManyToOne(targetEntity="Occurrence", inversedBy="extendedFieldOccurrences")
-     * @ORM\JoinColumn(name="occurrence_id", referencedColumnName="id", nullable=FALSE)
+     * @ORM\JoinColumn(name="occurrence_id", referencedColumnName="id", nullable=true)
      */
     private $occurrence;
+
+    /**
+     * @Assert\NotNull
+     * No need to add the "write" context, Occurrence->addExtendedField() do the job
+     * @ORM\ManyToOne(targetEntity="Sye", inversedBy="extendedFieldOccurrences")
+     * @ORM\JoinColumn(name="sye_id", referencedColumnName="id", nullable=true)
+     */
+    private $sye;
+
+    /**
+     * @Assert\NotNull
+     * No need to add the "write" context, Occurrence->addExtendedField() do the job
+     * @ORM\ManyToOne(targetEntity="SyntheticColumn", inversedBy="extendedFieldOccurrences")
+     * @ORM\JoinColumn(name="synthetic_column_id", referencedColumnName="id", nullable=true)
+     */
+    private $syntheticColumn;
 
     /**
      * @Assert\NotNull
@@ -93,6 +109,32 @@ class ExtendedFieldOccurrence {
 
        return $this;
    }
+
+   public function getSye(): ?Sye {
+
+    return $this->sye;
+    }
+
+
+    public function setSye(?Sye $sye): self {
+
+        $this->sye = $sye;
+
+        return $this;
+    }
+
+    public function getSyntheticColumn(): ?SyntheticColumn {
+
+        return $this->syntheticColumn;
+    }
+
+
+    public function setSyntheticColumn(?SyntheticColumn $syntheticColumn): self {
+
+        $this->syntheticColumn = $syntheticColumn;
+
+        return $this;
+    }
 
 
    public function getExtendedField(): ?ExtendedField {
