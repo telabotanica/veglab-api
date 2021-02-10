@@ -30,6 +30,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
   protected function buildData($table)
   {
     $data = [];
+    $tableValidations = [];
 
     // VL USER
     $u = $table->getUser();
@@ -41,6 +42,26 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
         'username' => $u->getUsername(),
         'email' => $u->getEmail()
     );
+
+    // VL Table Validation
+    foreach($table->getValidations() as $validation) {
+      $v = array(
+          'id' => $validation->getId(),
+          'validatedBy' => $validation->getValidatedBy(),
+          'validatedAt' => $validation->getValidatedAt() ? $validation->getValidatedAt()->format('Y-m-d H:i:s') : null,
+          'user' => $vlUser,
+          'updatedBy' => $validation->getUpdatedBy(),
+          'updatedAt' => $validation->getUpdatedAt() ? $validation->getUpdatedAt()->format('Y-m-d H:i:s') : null,
+          'repository' => $validation->getRepository(),
+          'repositoryIdNomen' => $validation->getRepositoryIdNomen(),
+          'repositoryIdTaxo' => $validation->getRepositoryIdTaxo(),
+          'inputName' => $validation->getInputName(),
+          'validatedName' => $validation->getValidatedName(),
+          'validName' => $validation->getValidName(),
+          'userIdValidation' => $validation->getUserIdValidation()
+      );
+      $tableValidations[] = $v;
+    }
 
     $data['id']               = $table->getId();
     $data['isDiagnosis']      = $table->getIsDiagnosis();
@@ -60,9 +81,9 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     $data['updatedBy']        = $table->getUpdatedBy();
     $data['updatedAt']        = $this->getFormattedDate($table->getUpdatedAt());
 
-    $data['tableValidation']  = $this->getTableValidation($table->getValidations()[0]);
-    $data['syeValidations']   = $this->getSyeValidations($table->getSye());
-    $data['occurrencesValidations']  = $this->getSyeOccurrencesValidations($table->getSye());
+    $data['validations']      = $tableValidations;
+    // $data['syeValidations']   = $this->getSyeValidations($table->getSye());
+    // $data['occurrencesValidations']  = $this->getSyeOccurrencesValidations($table->getSye());
     $data['rowsValidations']  = $this->getRowsValidations($table);
 
     $data['tableName']        = (null !== $table->getValidations()[0]) ? $table->getValidations()[0]->getValidatedName() : '';
@@ -72,7 +93,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     $data['rowsCount']        = $this->getRowsCount($table);
     $data['occurrencesCount'] = $this->getOccurrencesCount($table);
 
-    $data['validations']      = $this->getValidations($table);
+    $data['allValidations']   = $this->getValidations($table);
 
     $data['vlBiblioSource']   = $table->getVlBiblioSource() ? $table->getVlBiblioSource()->getId().'~'.$table->getVlBiblioSource()->getTitle() : null;
 
@@ -235,7 +256,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     $validations->table = $table;
     $validations->syes  = $syes;
 
-    return json_encode($validations);
+    return $validations; // json_encode($validations);
   }
 
   private function getOccurrencesCount($table): ?int {
