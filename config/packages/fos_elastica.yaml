@@ -60,7 +60,8 @@ fos_elastica:
                         observer: ~
                         observerInstitution: ~
                         level: ~
-                        layer: ~
+                        layer:
+                            type: "keyword" 
                         parentId: ~
                         validations:
                             type: "nested"
