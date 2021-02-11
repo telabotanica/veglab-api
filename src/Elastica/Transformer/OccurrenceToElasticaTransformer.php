@@ -265,7 +265,8 @@ class OccurrenceToElasticaTransformer implements ModelToElasticaTransformerInter
         $data['phenology'] = $occ->getPhenology();
         $data['sampleHerbarium'] = $occ->getSampleHerbarium();
         $data['bibliographySource'] = $occ->getBibliographySource();
-        $data['vlBiblioSource'] = $occ->getVlBiblioSource() ? $occ->getVlBiblioSource()->getId().'~'.$occ->getVlBiblioSource()->getTitle() : null;
+        $data['bibliographySourceId'] = $occ->getVlBiblioSource() ? $occ->getVlBiblioSource()->getId() : null;
+        $data['vlBiblioSource'] = $occ->getVlBiblioSource() ? $occ->getVlBiblioSource()->getTitle() : null;
         $data['inputSource'] = $occ->getInputSource();
         $data['isPublic'] = $occ->getIsPublic();
 		$data['isPublic_keyword'] = $occ->getIsPublic();

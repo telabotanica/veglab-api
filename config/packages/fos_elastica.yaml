@@ -171,6 +171,8 @@ fos_elastica:
                         phenology: ~
                         sampleHerbarium: 
                             type: "boolean"
+                        bibliographySourceId:
+                            type: "integer" 
                         bibliographySource: ~ 
                         inputSource: ~
                         isPublic: 
