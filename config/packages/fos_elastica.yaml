@@ -325,6 +325,48 @@ fos_elastica:
                         model_to_elastica_transformer:
                             service: app.search.photo_to_elastica_transformer
 
+        synthetic_columns:
+            index_name: vl_synth_cols
+            types:
+                synthetic_column:
+                    properties:
+                        validations:
+                            type: "nested"
+                            properties:
+                                id:
+                                    type: "long"
+                                repository:
+                                    type: "text"
+                                repositoryIdNomen:
+                                    type: "long"
+                                repositoryIdTaxo:
+                                    type: "text"
+                                inputName: 
+                                    type: "text"
+                                validatedName:
+                                    type: "text"
+                                validName:
+                                    type: "text"
+                        items:
+                            type: "nested"
+                            properties:
+                                repository: ~
+                                repositoryIdNomen: ~
+                                repositoryIdTaxo: ~
+                                displayName: ~
+                                frequency:
+                                    type: "long"
+                    persistence:
+                        driver: orm
+                        model: App\Entity\SyntheticColumn
+                        provider: ~
+                        finder: ~
+                        repository: ~
+                        #model_to_elastica_transformer:
+                        #    service: app.search.table_to_elastica_transformer
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+
         tables:
             index_name: vl_tables
             types:
