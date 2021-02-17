@@ -89,7 +89,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     $data['validations']      = $tableValidations;
     $data['tableValidation'] = $inlineTableValidations;
     // $data['syeValidations']   = $this->getSyeValidations($table->getSye());
-    // $data['occurrencesValidations']  = $this->getSyeOccurrencesValidations($table->getSye());
+    $data['occurrencesAndSyeValidations']  = $this->getSyeAndOccurrencesValidations($table->getSye());
     $data['rowsValidations']  = $this->getRowsValidations($table);
 
     $data['tableName']        = (null !== $table->getValidations()[0]) ? $table->getValidations()[0]->getValidatedName() : '';
@@ -136,6 +136,45 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
           $i++;
         }
       }
+    }
+
+    return $flatValidations;
+  
+  
+  }
+
+  /**
+   * Returns a flat validations string that contains every SYE AND idiotaxons validations
+   */
+  private function getSyeAndOccurrencesValidations($syes): ?string
+  {
+    $flatValidations = '';
+
+    if (null === $syes) return '';
+
+    $i = 0;
+    foreach ($syes as $sye) {
+      $syeValidations = $sye->getValidations();
+      if (null !== $syeValidations) {
+        foreach ($syeValidations as $syeValidation) {
+          $flatValidationSye = $syeValidation->getRepository() . '~' . $syeValidation->getRepositoryIdTaxo();
+          $flatValidations .= $flatValidationSye . ' ';
+        }
+      }
+      // $flatValidation = $this->getOccurrencesValidations($sye->getOccurrences());
+      // if ($i === 0) { $flatValidations = $flatValidation; } elseif ($i > 0) { $flatValidations = $flatValidations . ' ' . $flatValidation; }
+
+      foreach ($sye->getOccurrences() as $occ) {
+        $occValidations = $occ->getValidations();
+        if (null !== $occValidations) {
+          foreach ($occValidations as $occValidation) {
+            $flatValidationOcc = $occValidation->getRepository() . '~' . $occValidation->getRepositoryIdTaxo();
+            $flatValidations .= $flatValidationOcc . ' ';
+            // $i++;
+          }
+        }
+      }
+      // $i++;
     }
 
     return $flatValidations;
