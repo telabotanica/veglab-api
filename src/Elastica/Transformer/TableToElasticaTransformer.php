@@ -73,6 +73,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     $data['title']            = $table->getTitle();
     $data['description']      = $table->getDescription();
 
+    $data['bibliographySourceId'] = $table->getVlBiblioSource() ? $table->getVlBiblioSource()->getId() : null;
     $data['hasPdf']           = (null !== $table->getPdf()) ? true : false;
     $data['pdfContentUrl']    = (null !== $table->getPdf()) ? $table->getPdf()->getContentUrl() : null;
 
