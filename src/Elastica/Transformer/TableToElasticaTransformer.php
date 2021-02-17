@@ -44,6 +44,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     );
 
     // VL Table Validation
+    $inlineTableValidations = '';
     foreach($table->getValidations() as $validation) {
       $v = array(
           'id' => $validation->getId(),
@@ -61,6 +62,9 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
           'userIdValidation' => $validation->getUserIdValidation()
       );
       $tableValidations[] = $v;
+      if ($validation->getRepository() && $validation->getRepositoryIdTaxo()) {
+        $inlineTableValidations .= $validation->getRepository() . '~' . $validation->getRepositoryIdTaxo() . ' ';
+      }
     }
 
     $data['id']               = $table->getId();
@@ -82,6 +86,7 @@ class TableToElasticaTransformer implements ModelToElasticaTransformerInterface
     $data['updatedAt']        = $this->getFormattedDate($table->getUpdatedAt());
 
     $data['validations']      = $tableValidations;
+    $data['tableValidation'] = $inlineTableValidations;
     // $data['syeValidations']   = $this->getSyeValidations($table->getSye());
     // $data['occurrencesValidations']  = $this->getSyeOccurrencesValidations($table->getSye());
     $data['rowsValidations']  = $this->getRowsValidations($table);
