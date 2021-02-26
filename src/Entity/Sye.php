@@ -117,6 +117,7 @@ class Sye implements OwnedEntityFullInterface
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SyntheticColumn", mappedBy="sye", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="synth_col_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      * @Groups({"read", "write", "write:put"})
      * @ApiSubresource(maxDepth=1)
      */
