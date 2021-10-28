@@ -10,10 +10,16 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class EsProxyController extends AbstractController
 {
+    private const SUPPORTED_API = [
+        '_count',
+        '_search',
+        '_mget',
+    ];
+
     /**
      * This hack aimed to replace VL client's direct calls to ElasticSearch server
      *
-     * @Route("/es-proxy/{index}/{action}", name="es_proxy")
+     * @Route("/es-proxy/{index}/{action}", name="es_proxy", requirements={"action"="_\w+"})
      */
     public function index(
         Request $request,
@@ -22,6 +28,10 @@ class EsProxyController extends AbstractController
         string $index,
         string $action
     ) {
+        if (!in_array($action, self::SUPPORTED_API)) {
+            throw new \InvalidArgumentException('Unsupported API');
+        }
+
         $url = 'http://'.$esConfig['host'].':'.$esConfig['port'].''.'/'.$index.'/'.$action;
 
         switch ($request->getMethod()) {

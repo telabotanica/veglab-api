@@ -49,7 +49,7 @@ class SSOUserExtractor {
         $tokenDecoder = new SSOTokenDecoder();
 // die(var_dump($tokenDecoder)); 
         $userInfo = $tokenDecoder->getUserFromToken($token);
-        // $userInfo['avatar'] = '';
+         $userInfo['avatar'] = '';
         //$role = new Role();
         $roles = array();
 
